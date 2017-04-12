@@ -25,7 +25,7 @@ describe DockingStation do
     end
     it "a) gets a bike, and then b) expects the bike to be working" do
 		  bike = Bike.new
-		  subject.bikes << bike
+		  subject.dock(bike)
 		  expect(subject.release.working?).to eq(true)
 	  end
     it "only releases working bikes" do
@@ -52,8 +52,7 @@ describe DockingStation do
     it "is able to dock and report a broken bike" do
       station = DockingStation.new
       station.dock_broken(Bike.new)
-      broken_bike = station.release
-      expect(broken_bike.working?).to eq(false)
+      expect(station.bikes[0].working?).to eq(false)
     end
 
   end
