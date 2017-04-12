@@ -28,6 +28,11 @@ describe DockingStation do
 		  subject.bikes << bike
 		  expect(subject.release.working?).to eq(true)
 	  end
+    it "only releases working bikes" do
+      bike = Bike.new
+      subject.dock_broken(bike)
+      expect { subject.release }.to raise_error "No bikes to release"
+    end
 
   end
 
@@ -45,7 +50,10 @@ describe DockingStation do
 	  end
 
     it "is able to dock and report a broken bike" do
-      expect ( subject.dock_broken(bike).working? ).to eq(false)
+      station = DockingStation.new
+      station.dock_broken(Bike.new)
+      broken_bike = station.release
+      expect(broken_bike.working?).to eq(false)
     end
 
   end

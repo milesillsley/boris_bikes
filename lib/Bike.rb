@@ -1,5 +1,5 @@
 class Bike
-attr_accessor :docked
+attr_accessor :docked, :condition
 
 	def initialize
 		@condition = true

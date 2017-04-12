@@ -29,5 +29,11 @@ public
 		@bikes << bike
 	end
 
+	def dock_broken(bike)
+		fail "No more space" unless full?
+		bike.condition = false
+		@bikes << bike
+	end
+
 
 end
