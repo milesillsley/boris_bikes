@@ -5,16 +5,16 @@ class DockingStation
   attr_accessor :capacity, :bikes
   #attr_accessor :max_capacity
 
-	def initialize
+	def initialize(capacity = MAX_CAPACITY)
 		@bikes = []
-		@capacity = MAX_CAPACITY
+		@capacity = capacity
 
 	end
 
 private
 
 	def full?
-		@bikes.size < MAX_CAPACITY ? true : false
+		@bikes.size < @capacity ? true : false
 	end
 
 public
