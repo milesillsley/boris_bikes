@@ -1,14 +1,13 @@
 require './lib/Bike'
 
-MAX_CAPACITY = 20
-
-
 class DockingStation
-attr_accessor :bikes
-#attr_accessor :max_capacity
+	MAX_CAPACITY = 20
+  attr_accessor :capacity, :bikes
+  #attr_accessor :max_capacity
 
 	def initialize
 		@bikes = []
+		@capacity = MAX_CAPACITY
 
 	end
 

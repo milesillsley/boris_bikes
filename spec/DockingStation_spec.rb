@@ -4,12 +4,18 @@ require 'DockingStation'
 describe DockingStation do
 
   describe "setting capacity" do
-    it "takes a value for capacity" do
-      endexpect(subject(15)).capacity.to eq(15)
-    end
+
     it "sets the default to 20 if no capacity is specified" do
-      expect(subject).capacity.to eq(20)
+      expect(subject.capacity).to eq DockingStation::MAX_CAPACITY
     end
+
+    it "has a variable capacity" do
+      station = DockingStation.new(15)
+      15.times { station.dock Bike.new }
+      expect { station.dock Bike.new }.to raise_error "No more space"
+    end
+
+
   end
 
 
@@ -35,9 +41,8 @@ describe DockingStation do
     end
 
     it "won't accept more bikes than station's maximum capacity which is 20 bikes" do
-    	MAX_CAPACITY.times{ bike = Bike.new
-    	subject.bikes << bike }
-    	expect{subject.dock(bike)}.to raise_error "No more space"
+    	subject.capacity.times{ subject.dock(bike) }
+    	expect { subject.dock(bike) }.to raise_error "No more space"
 	  end
 
   end
