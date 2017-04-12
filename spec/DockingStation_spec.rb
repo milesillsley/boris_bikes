@@ -3,8 +3,13 @@ require 'DockingStation'
 
 describe DockingStation do
 
-  describe "set cappacity" do
-    it { is_expected.to receive(:new).with(Integer) }
+  describe "setting capacity" do
+    it "takes a value for capacity" do
+      endexpect(subject(15)).capacity.to eq(15)
+    end
+    it "sets the default to 20 if no capacity is specified" do
+      expect(subject).capacity.to eq(20)
+    end
   end
 
 
