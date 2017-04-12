@@ -3,6 +3,7 @@ require 'DockingStation'
 
 describe DockingStation do
 
+
   describe "setting capacity" do
 
     it "sets the default to 20 if no capacity is specified" do
@@ -14,8 +15,6 @@ describe DockingStation do
       15.times { station.dock Bike.new }
       expect { station.dock Bike.new }.to raise_error "No more space"
     end
-
-
   end
 
 
@@ -33,7 +32,7 @@ describe DockingStation do
   end
 
 
-  describe "#dock" do
+  describe "#dock & #dock_broken" do
 
     bike = Bike.new
     it "docks a bike at a docking station" do
@@ -44,6 +43,10 @@ describe DockingStation do
     	subject.capacity.times{ subject.dock(bike) }
     	expect { subject.dock(bike) }.to raise_error "No more space"
 	  end
+
+    it "is able to dock and report a broken bike" do
+      expect ( subject.dock_broken(bike).working? ).to eq(false)
+    end
 
   end
 
